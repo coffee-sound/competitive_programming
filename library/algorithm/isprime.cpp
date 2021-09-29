@@ -7,6 +7,7 @@ const int N = 100000;
 vector<bool> isprime(N+1, true);
 
 // エラトステネスの篩
+// 関数呼び出しで，isprimeに格納
 void sieve() {
     isprime[0] = false;
     isprime[1] = false;

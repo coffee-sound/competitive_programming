@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <cmath>
 #include <numeric>
-#include <queue>
+#include <map>
 #define rep(i, a, b) for (int i = a; i < b; ++i)
 using namespace std;
 
@@ -16,21 +16,23 @@ template<class T> bool chmin(T& a, T b) { if (a > b) { a = b; return true; } els
 template<class T> bool chmax(T& a, T b) { if (a < b) { a = b; return true; } else return false; }
 
 int main() {
-    string ss; getline(cin, ss);
-    ss += ' ';
-    vector<string> s;
-    int cnt = 0;
-    int index = 0;
-    while (cnt < ss.size()) {
-        if (ss[cnt] == ' ') {
-            s.push_back(ss.substr(index, cnt-index));
-            index += cnt-index+1;
-        }
-        cnt++;
-    }
     int N; cin >> N;
-    vector<string> ng(N);
+    map<long long, long long> mpx, mpy;
     rep(i, 0, N) {
-        ci
+        long long x, y; cin >> x >> y;
+        mpx[x]++;
+        mpy[y]++;
     }
+
+    long long ans = 0;
+    for (auto x : mpx) {
+        if (x.second == 1) continue;
+        for (auto y : mpy) {
+            if (y.second == 1) continue;
+            ans += (x.second * (x.second - 1) / 2) * (y.second * (y.second - 1) / 2);
+        }
+    }
+
+    cout << ans << endl;
+    return 0;
 }
